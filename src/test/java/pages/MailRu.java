@@ -1,6 +1,13 @@
+package pages;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.testng.Assert;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.testng.AssertJUnit.assertTrue;
 
@@ -8,7 +15,7 @@ import static org.testng.AssertJUnit.assertTrue;
 public class MailRu extends AbstractMailRu {
 
     @FindBy(xpath = "//div[@class = 'search']/form/div/div[2]/label/span/input")
-    private WebElement txtSearch;
+    WebElement txtSearch;
 
 
     public MailRu(WebDriver driver){
@@ -31,7 +38,17 @@ public class MailRu extends AbstractMailRu {
 //        waitUntilDisplayed();
     }
 
+    public void switchToSearchTab(){
+        ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(1));
+    }
+
+    public void closeSearchTab(){
+        driver.close();
+    }
+
     public void checkSearchResultsPageTitle(String expectedTitle){
+        System.out.println(driver.getTitle());
         assertTrue(driver.getTitle().contains(expectedTitle));
     }
 

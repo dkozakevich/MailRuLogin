@@ -1,3 +1,5 @@
+package pages;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -7,6 +9,7 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.LoadableComponent;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
 
 /**
  * Created by dkozakevich on 3/28/2017.
@@ -39,9 +42,11 @@ public abstract class AbstractMailRu extends LoadableComponent<AbstractMailRu> {
 
     }
 
-    protected boolean isAjaxComplete() {
-        final JavascriptExecutor executor = (JavascriptExecutor) driver;
-        return (Boolean) executor.executeScript("return $.active == 0");
+    //There is no jQuery on mail.ru, that's whu return true; change for the jQuery websites
+    protected boolean isAjaxComplete () {
+//        final JavascriptExecutor executor = (JavascriptExecutor) driver;
+//        return (Boolean) executor.executeScript("return $.active == 0");
+        return true;
     }
 
     protected Boolean isPageLoaded() {

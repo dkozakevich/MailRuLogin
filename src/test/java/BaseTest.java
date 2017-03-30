@@ -5,7 +5,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
+import pages.MailRu;
 
 
 public class BaseTest {
@@ -14,7 +16,7 @@ public class BaseTest {
     protected WebDriver driver;
     protected WebDriverWait wait;
 
-    @BeforeTest
+    @BeforeMethod
     public void setUp(){
         System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver.exe");
         driver = new ChromeDriver();
@@ -42,5 +44,9 @@ public class BaseTest {
     private Boolean isPageLoaded() {
         final JavascriptExecutor executor = (JavascriptExecutor) driver;
         return executor.executeScript("return document.readyState").equals("complete");
+    }
+
+    protected MailRu startMailRu(){
+        return  new MailRu(driver);
     }
 }
